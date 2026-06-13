@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Fullstack Learning"
+  short_description: "Frontend-to-AI-fullstack course coach"
+  default_prompt: "Use $ai-fullstack-learning to start or continue my AI fullstack learning path."
+
+policy:
+  allow_implicit_invocation: true
