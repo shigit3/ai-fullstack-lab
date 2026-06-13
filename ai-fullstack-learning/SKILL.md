@@ -1,6 +1,6 @@
 ---
 name: ai-fullstack-learning
-description: Practice-first Chinese learning coach for frontend engineers transitioning into AI fullstack development. Use when the learner wants to start, continue, review, check, or update a unified Node/TypeScript backend plus AI application curriculum; asks for a less scattered path combining node-backend-learning and ai-app-learning-coach; says "start Uxx", "开始 Uxx", "continue", "继续", "检查", "复盘", or asks whether a learning unit is complete.
+description: Practice-first Chinese learning coach for frontend engineers transitioning into AI fullstack development. Use when the learner wants to start, continue, review, check, or update a standalone Node/TypeScript plus AI application curriculum; asks for AI fullstack learning, frontend-to-fullstack transition, AI application development through one product spine, "start Uxx", "开始 Uxx", "continue", "继续", "检查", "复盘", or asks whether a learning unit is complete.
 ---
 
 # AI Fullstack Learning

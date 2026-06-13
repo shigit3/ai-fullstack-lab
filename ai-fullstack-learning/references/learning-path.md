@@ -1,6 +1,6 @@
 # AI Fullstack Learning Path
 
-This is a 24-unit path for a frontend engineer becoming an AI fullstack engineer. It merges backend foundations and AI application development into one product-centered curriculum.
+This is a standalone 24-unit path for a frontend engineer becoming an AI fullstack engineer. It integrates backend foundations and AI application development into one product-centered curriculum.
 
 The point is not to finish two courses. The point is to build one credible product while gradually earning the backend, AI, safety, testing, and deployment judgment needed to explain it.
 
