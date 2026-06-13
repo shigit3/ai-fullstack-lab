@@ -14,22 +14,23 @@ Do not use `paused`. The learner may stop talking at any time; unfinished work r
 
 Codex is the primary lesson guide. README/TODO files are support artifacts for instructions, acceptance criteria, and later review. Do not require the learner to read a generated README before continuing; present the next action directly in chat.
 
-## Command Interpretation
+## Intent Interpretation
 
-Treat these as low-friction commands:
+The learner should not memorize a command menu. Infer the intent from natural language:
 
+- `start learning` / `开始学习` / `今天开始`: Use the unfinished active unit if one exists; otherwise select the unit implied by progress, or U01 when no state exists.
 - `start Uxx` / `开始 Uxx`: Start the named unit.
-- `continue` / `继续`: Resume from `ai-fullstack-labs/LEARNING_STATE.md`.
-- `check` / `检查`: Inspect the current artifact and decide whether the unit is complete.
-- `review` / `复盘`: Summarize current progress, gaps, and next action.
+- `resume active unit` / `恢复当前单元`: Cross-conversation recovery from `ai-fullstack-labs/LEARNING_STATE.md` when the previous conversation ended before completion.
+- `这算完成了吗` / `检查一下`: Treat as an optional completion-judgment request. The learner does not need to ask this; Codex should also judge completion automatically when evidence suggests the boundary is near.
+- `review` / `复盘`: Summarize current progress, gaps, and the current unit's next action.
 - `stuck` / `卡住了`: Diagnose the blocker and give the smallest next action.
 - `switch Uxx` / `换到 Uxx`: Switch units, preserving the previous unit state.
 - `blank build` / `从零开始`: Give requirements without scaffold.
 - `walkthrough` / `完整讲解`: Explain or implement in small chunks after the learner has tried.
-- `too much` / `太多了` / `有点乱`: Enter overload recovery and shrink the next task.
+- `too much` / `太多了` / `有点乱`: Enter overload recovery and shrink the task.
 - `answer` / `直接给答案`: Use the hint ladder unless the learner has already made a serious attempt.
 
-Infer natural-language variants.
+Do not make `continue` / `继续` a normal user-facing command. If the learner says it anyway, infer whether they mean cross-conversation recovery or starting the learning session, then proceed without asking them to choose a mode.
 
 ## State File
 
@@ -90,7 +91,7 @@ Update it after:
 - Completing a unit.
 - Switching units.
 
-Starting a unit should always write `in progress` before the learner begins work. Completing a unit should always write `completed` before recommending the next unit.
+Starting a unit should always write `in progress` before the learner begins work. Completing a unit should always write `completed` before naming the next unit for orientation.
 
 ## Completion Files
 
@@ -133,7 +134,7 @@ Write completion files before doing optional improvements.
 
 ## Lowest-Mind-Burden Defaults
 
-- If no state exists and the learner says `继续`, start U01.
+- If no state exists and the learner asks to start learning, start U01.
 - If no project exists, create the smallest U01 lab and state files.
 - If an existing app can naturally host the unit, use it.
 - If package manager is unclear, inspect lockfiles and choose the existing one.
@@ -188,9 +189,9 @@ When completing a unit, always cover these items in chat:
 3. What the learner can now do.
 4. Boundary not covered yet.
 5. Progress files updated.
-6. Recommended next unit and why it follows.
+6. Next unit for orientation and why it follows.
 
-Write progress/state/completion files before recommending the next unit.
+Write progress/state/completion files before naming the next unit. Do not start the next unit in the same conversation unless the learner explicitly asks to switch scope.
 
 Do not provide implementation steps or a full answer by default. Use this escalation order when help is needed:
 
@@ -279,10 +280,10 @@ When the learner says the course feels scattered, too much, confusing, or they c
 
 ## Completion Decision
 
-When the learner asks `检查`, or evidence suggests the unit is near completion:
+When evidence suggests the unit is near completion, judge completion automatically. If the learner asks `这算完成了吗` or `检查一下`, treat that as an optional shortcut, not a required step.
 
 1. Read `unit-contract.md`.
 2. Inspect files, outputs, tests, or the learner's explanation.
 3. Decide complete or incomplete.
 4. If incomplete, update state with the single smallest missing piece.
-5. If complete, update progress, state, and `UNIT_COMPLETION.md`; say `Unit complete / 本单元完成`; recommend the next unit.
+5. If complete, update progress, state, and `UNIT_COMPLETION.md`; say `Unit complete / 本单元完成`; name the next unit only for orientation.

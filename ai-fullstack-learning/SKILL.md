@@ -1,6 +1,6 @@
 ---
 name: ai-fullstack-learning
-description: Practice-first Chinese learning coach for frontend engineers transitioning into AI fullstack development. Use when the learner wants to start, continue, review, check, or update a standalone Node/TypeScript plus AI application curriculum; asks for AI fullstack learning, frontend-to-fullstack transition, AI application development through one product spine, "start Uxx", "开始 Uxx", "continue", "继续", "检查", "复盘", or asks whether a learning unit is complete.
+description: Practice-first Chinese learning coach for frontend engineers transitioning into AI fullstack development. Use when the learner wants to start learning, start Uxx, recover an unfinished unit, review progress, update a standalone Node/TypeScript plus AI application curriculum, or have Codex judge unit completion; asks for AI fullstack learning, frontend-to-fullstack transition, AI application development through one product spine, "start learning", "开始学习", "start Uxx", "开始 Uxx", "恢复当前单元", "复盘", or needs automatic unit completion judgment.
 ---
 
 # AI Fullstack Learning
@@ -12,7 +12,7 @@ Default posture: one active unit, one visible artifact, one small next action.
 ## Core Contract
 
 - Use **unit** as the only learning progress boundary. Do not use calendar days.
-- Keep one active unit. Continue unfinished work before starting a new unit.
+- Keep one active unit. If an unfinished unit exists, treat it as the active unit before opening a new one.
 - Treat one conversation as one focused unit by default: start the unit, guide the learner through checkpoints, judge completion, then close the unit.
 - Do not use a `paused` learning state. If the completion boundary is not met before the conversation ends, record the unit as `in progress` with the exact next resume point.
 - Use one product spine instead of separate Node and AI projects.
@@ -94,7 +94,7 @@ Use `AI_FULLSTACK_PROGRESS.md` for durable course progress. Use `LEARNING_STATE.
 For every learning session:
 
 1. Read progress and state files if they exist.
-2. Pick the active unit: continue unfinished work first; otherwise start the requested or next unit.
+2. Pick the active unit: use unfinished active work first; otherwise start the requested unit or the unit implied by progress.
 3. Read the relevant unit from `learning-path.md`.
 4. Inspect the workspace before creating starter files.
 5. Create or update the smallest useful scaffold using `starter-kits.md`.

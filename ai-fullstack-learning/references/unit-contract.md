@@ -71,6 +71,6 @@ Do this in order:
 4. Say `Unit complete / 本单元完成`.
 5. Summarize what the learner can now do.
 6. Name one remaining risk or blind spot.
-7. Recommend the next unit.
+7. Name the next unit for orientation, without starting it in the same conversation.
 
 Post-completion polish should not reopen the unit unless it reveals that a completion criterion was false.
